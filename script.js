@@ -49,7 +49,7 @@ function playRound(computerSelection, playerSelection) {
 }
 
 function game() {
-  const GAME_ROUNDS = 5;
+  const VICTORIES_NEEDED = 5;
   let playerWins = 0;
   let computerWins = 0;
 
@@ -68,7 +68,7 @@ function game() {
     }
   }
 
-  for (let round = 1; round <= GAME_ROUNDS; round++) {
+  while (playerWins < VICTORIES_NEEDED && computerWins < VICTORIES_NEEDED) {
     const computerSelection = getComputerChoice();
     console.log(computerSelection);
     const playerSelection = prompt(
