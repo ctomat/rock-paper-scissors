@@ -12,6 +12,7 @@ function playRound(computerSelection, playerSelection) {
   const TIE_MESSAGE = "Tie!";
   const WIN_MESSAGE = "You win!";
   const LOST_MESSAGE = "You lose!";
+  const INVALID_OPTION = "The option you chose is not valid";
 
   const MATCH_CASES = {
     rock: () => {
@@ -43,10 +44,14 @@ function playRound(computerSelection, playerSelection) {
     },
   };
 
-  return MATCH_CASES[playerSelection]();
+  return MATCH_CASES[playerSelection]
+    ? MATCH_CASES[playerSelection]()
+    : INVALID_OPTION;
 }
 
 function onClickStartButton() {
-  console.log(getComputerChoice());
-  console.log(playRound(getComputerChoice(), "scissors"));
+  const playerSelection = prompt(
+    "Write down your choice; it can be rock, paper or scissors"
+  );
+  console.log(playRound(computerSelection, playerSelection));
 }
