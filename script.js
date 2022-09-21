@@ -8,6 +8,45 @@ function getComputerChoice() {
   ];
 }
 
+function playRound(computerSelection, playerSelection) {
+  const TIE_MESSAGE = "Tie!";
+  const WIN_MESSAGE = "You win!";
+  const LOST_MESSAGE = "You lose!";
+
+  const MATCH_CASES = {
+    rock: () => {
+      if (computerSelection === playerSelection) {
+        return TIE_MESSAGE;
+      } else if (computerSelection === "scissors") {
+        return WIN_MESSAGE;
+      } else {
+        return LOST_MESSAGE;
+      }
+    },
+    paper: () => {
+      if (computerSelection === playerSelection) {
+        return TIE_MESSAGE;
+      } else if (computerSelection === "rock") {
+        return WIN_MESSAGE;
+      } else {
+        return LOST_MESSAGE;
+      }
+    },
+    scissors: () => {
+      if (computerSelection === playerSelection) {
+        return TIE_MESSAGE;
+      } else if (computerSelection === "paper") {
+        return WIN_MESSAGE;
+      } else {
+        return LOST_MESSAGE;
+      }
+    },
+  };
+
+  return MATCH_CASES[playerSelection]();
+}
+
 function onClickStartButton() {
   console.log(getComputerChoice());
+  console.log(playRound(getComputerChoice(), "scissors"));
 }
