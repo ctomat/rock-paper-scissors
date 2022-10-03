@@ -1,3 +1,5 @@
+@import url('./reset.css');
+
 @font-face {
     font-family: 'Apple Kid';
     src: url('./fonts/apple-kid-font/Apple-Kid.eot');
@@ -9,13 +11,6 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-weight: normal;
 }
 
 body {
@@ -33,6 +28,9 @@ body {
 
 .content {
     position: relative;
+}
+
+.breadcrumb {
     display: flex;
     justify-content: center;
 }
@@ -58,4 +56,31 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.option-buttons-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.button-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50px;
+    border: 33px solid;
+    border-image: url('./bmtQZWx.png') 33 round;
+    background-color: #000000;
+    padding: 0;
+    cursor: pointer;
+}
+
+.button-container button img {
+    width: 70px;
+    height: auto;
 }
