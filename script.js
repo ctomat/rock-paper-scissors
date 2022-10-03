@@ -1,5 +1,3 @@
-/* The constant is initialized with the three possible options. 
-Since it will be immutable, it is written in capital letters. */
 const ROCK_PAPER_SCISSORS = ["rock", "paper", "scissors"];
 const TIE_MESSAGE = "Tie!";
 const WIN_MESSAGE = "You win!";

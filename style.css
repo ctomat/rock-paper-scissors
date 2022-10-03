@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'Apple Kid';
+    src: url('./fonts/apple-kid-font/Apple-Kid.eot');
+    src: url('./fonts/apple-kid-font/Apple-Kid.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/apple-kid-font/Apple-Kid.woff2') format('woff2'),
+        url('./fonts/apple-kid-font/Apple-Kid.woff') format('woff'),
+        url('./fonts/apple-kid-font/Apple-Kid.ttf') format('truetype'),
+        url('./fonts/apple-kid-font/Apple-Kid.svg#Apple-Kid') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Apple Kid', Times, serif;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.header-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+    background-color: #000000;
+    width: 500px;
+    min-height: 100px;
+    border: 33px solid;
+    border-radius: 50px;
+    border-image: url('./bmtQZWx.png') 33 round;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
+}
+
+.header-container header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
