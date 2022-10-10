@@ -20,6 +20,8 @@ const header = document.querySelector(".header-container");
 const textBox = document.querySelector(".text-box-content");
 
 const starman = document.querySelector(".starman");
+const playerCounter = document.querySelector(".player-counter");
+const starmanCounter = document.querySelector(".starman-counter");
 
 function typeWriter(i, txt, className, speed) {
   if (i < txt.length) {
@@ -119,6 +121,7 @@ function game(playerSelection) {
         75
       );
       playerWins++;
+      playerCounter.innerText = playerWins;
       starman.classList.add("damage");
       optionButtons.all.forEach((button) => {
         button.disabled = true;
@@ -143,6 +146,7 @@ function game(playerSelection) {
         75
       );
       computerWins++;
+      starmanCounter.innerText = computerWins;
       header.classList.add("damage");
       optionButtons.all.forEach((button) => {
         button.disabled = true;
