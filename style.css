@@ -38,24 +38,32 @@ body {
 .header-container {
     position: relative;
     display: flex;
-    justify-content: center;
     margin: 40px;
     background-color: #000000;
     width: 500px;
-    min-height: 100px;
+    min-height: 150px;
     border: 33px solid;
     border-radius: 50px;
     border-image: url('./bmtQZWx.png') 33 round;
-    padding: 10px;
     box-sizing: border-box;
     color: white;
-    font-size: 18px;
+    font-size: 28px;
 }
 
-.header-container header {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.header-container:after {
+    position: absolute;
+    display: block;
+    content: "";
+    bottom: -26px;
+    right: 0;
+    height: 15px;
+    width: 27px;
+    background-image: url('./images/KGSpF6f-2.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation: arrow .5s infinite;
+    animation-timing-function: step-start;
+    animation-fill-mode: forwards;
 }
 
 .option-buttons-container {
@@ -66,7 +74,7 @@ body {
     gap: 50px;
 }
 
-.button-container button {
+.option-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,9 +86,70 @@ body {
     background-color: #000000;
     padding: 0;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button-hover-animation:hover {
+    width: 140px;
+    height: 140px;
 }
 
 .button-container button img {
     width: 70px;
     height: auto;
+}
+
+.starman {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.damage {
+    animation: blink 1s linear infinite;
+}
+
+.starman img {
+    width: 300px;
+    height: auto;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes arrow {
+    0% {
+        background-image: url('./images/KGSpF6f-2.png')
+    }
+
+    50% {
+        background-image: url('./images/hPluALn.png')
+    }
+
+    100% {
+        background-image: url('./images/KGSpF6f-2.png')
+    }
 }

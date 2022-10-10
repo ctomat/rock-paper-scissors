@@ -1,89 +1,205 @@
-const ROCK_PAPER_SCISSORS = ["rock", "paper", "scissors"];
-const TIE_MESSAGE = "Tie!";
-const WIN_MESSAGE = "You win!";
-const LOST_MESSAGE = "You lose!";
-const INVALID_OPTION = "The option you chose is not valid";
+const PK_OPTIONS = ["fire", "freeze", "thunder", "flash", "startoms"];
+const WIN = "Win";
+const LOSE = "Lose";
+const TIE = "Tie";
+const VICTORIES_NEEDED = 5;
+let playerWins = 0;
+let computerWins = 0;
+
+const optionButtons = {
+  fire: document.querySelector(`button[data-pk="fire"]`),
+  freeze: document.querySelector(`button[data-pk="freeze"]`),
+  thunder: document.querySelector(`button[data-pk="thunder"]`),
+  flash: document.querySelector(`button[data-pk="flash"]`),
+  startoms: document.querySelector(`button[data-pk="startoms"]`),
+  all: document.querySelectorAll(".option-button"),
+};
+
+const header = document.querySelector(".header-container");
+
+const textBox = document.querySelector(".text-box-content");
+
+const starman = document.querySelector(".starman");
+
+function typeWriter(i, txt, className, speed) {
+  if (i < txt.length) {
+    document.querySelector(className).innerText += txt.charAt(i);
+    i++;
+    setTimeout(() => typeWriter(i, txt, className, speed), speed);
+  }
+}
 
 function getComputerChoice() {
-  return ROCK_PAPER_SCISSORS[
-    Math.floor(Math.random() * ROCK_PAPER_SCISSORS.length)
-  ];
+  return PK_OPTIONS[Math.floor(Math.random() * PK_OPTIONS.length)];
 }
 
 function playRound(computerSelection, playerSelection) {
   const MATCH_CASES = {
-    rock: () => {
-      if (computerSelection === playerSelection) {
-        return TIE_MESSAGE;
-      } else if (computerSelection === "scissors") {
-        return WIN_MESSAGE;
-      } else {
-        return LOST_MESSAGE;
-      }
+    fire: () => {
+      const FIRE_MATCH = {
+        freeze: WIN,
+        flash: WIN,
+        thunder: LOSE,
+        startoms: LOSE,
+      };
+
+      return FIRE_MATCH[computerSelection]
+        ? FIRE_MATCH[computerSelection]
+        : TIE;
     },
-    paper: () => {
-      if (computerSelection === playerSelection) {
-        return TIE_MESSAGE;
-      } else if (computerSelection === "rock") {
-        return WIN_MESSAGE;
-      } else {
-        return LOST_MESSAGE;
-      }
+    freeze: () => {
+      const FREEZE_MATCH = {
+        thunder: WIN,
+        startoms: WIN,
+        fire: LOSE,
+        flash: LOSE,
+      };
+
+      return FREEZE_MATCH[computerSelection]
+        ? FREEZE_MATCH[computerSelection]
+        : TIE;
     },
-    scissors: () => {
-      if (computerSelection === playerSelection) {
-        return TIE_MESSAGE;
-      } else if (computerSelection === "paper") {
-        return WIN_MESSAGE;
-      } else {
-        return LOST_MESSAGE;
-      }
+    thunder: () => {
+      const THUNDER_MATCH = {
+        fire: WIN,
+        flash: WIN,
+        freeze: LOSE,
+        startoms: LOSE,
+      };
+
+      return THUNDER_MATCH[computerSelection]
+        ? THUNDER_MATCH[computerSelection]
+        : TIE;
+    },
+    flash: () => {
+      const FLASH_MATCH = {
+        freeze: WIN,
+        startoms: WIN,
+        fire: LOSE,
+        thunder: LOSE,
+      };
+
+      return FLASH_MATCH[computerSelection]
+        ? FLASH_MATCH[computerSelection]
+        : TIE;
+    },
+    startoms: () => {
+      const STARTOMS_MATCH = {
+        thunder: WIN,
+        fire: WIN,
+        freeze: LOSE,
+        flash: LOSE,
+      };
+
+      return STARTOMS_MATCH[computerSelection]
+        ? STARTOMS_MATCH[computerSelection]
+        : TIE;
     },
   };
 
-  return MATCH_CASES[playerSelection]
-    ? MATCH_CASES[playerSelection]()
-    : INVALID_OPTION;
+  return MATCH_CASES[playerSelection]();
 }
 
-function game() {
-  const VICTORIES_NEEDED = 5;
-  let playerWins = 0;
-  let computerWins = 0;
-
-  const ROUND_WINNER = {
-    [WIN_MESSAGE]: () => playerWins++,
-    [LOST_MESSAGE]: () => computerWins++,
-  };
-
-  function gameWinner() {
-    if (playerWins > computerWins) {
-      return "Player wins!";
-    } else if (playerWins < computerWins) {
-      return "Computer wins!";
-    } else {
-      return `It's a tie!`;
-    }
+function gameWinner() {
+  if (playerWins > computerWins) {
+    return "Player wins!";
   }
 
-  while (playerWins < VICTORIES_NEEDED && computerWins < VICTORIES_NEEDED) {
+  return "Computer wins!";
+}
+
+function game(playerSelection) {
+  const ROUND_WINNER = {
+    [WIN]: () => {
+      textBox.innerText = "";
+      typeWriter(
+        0,
+        `•\u00a0Starman\u00a0was\u00a0impacted\u00a0by\u00a0PK\u00a0${playerSelection.toUpperCase()}`,
+        ".text-box-content",
+        75
+      );
+      playerWins++;
+      starman.classList.add("damage");
+      optionButtons.all.forEach((button) => {
+        button.disabled = true;
+        button.classList.remove("button-hover-animation");
+        button.style.opacity = "0.4";
+      });
+      setTimeout(() => {
+        starman.classList.remove("damage");
+        optionButtons.all.forEach((button) => {
+          button.disabled = false;
+          button.classList.add("button-hover-animation");
+          button.style.opacity = "1";
+        });
+      }, 3000);
+    },
+    [LOSE]: () => {
+      textBox.innerText = "";
+      typeWriter(
+        0,
+        `•\u00a0Starman\u00a0has\u00a0attacked\u00a0you`,
+        ".text-box-content",
+        75
+      );
+      computerWins++;
+      header.classList.add("damage");
+      optionButtons.all.forEach((button) => {
+        button.disabled = true;
+        button.classList.remove("button-hover-animation");
+        button.style.opacity = "0.4";
+      });
+      setTimeout(() => {
+        header.classList.remove("damage");
+        optionButtons.all.forEach((button) => {
+          button.disabled = false;
+          button.classList.add("button-hover-animation");
+          button.style.opacity = "1";
+        });
+      }, 3000);
+    },
+    [TIE]: () => {
+      textBox.innerText = "";
+      typeWriter(
+        0,
+        `•\u00a0The\u00a0PKs\u00a0have\u00a0clashed`,
+        ".text-box-content",
+        75
+      );
+      optionButtons.all.forEach((button) => {
+        button.disabled = true;
+        button.classList.remove("button-hover-animation");
+        button.style.opacity = "0.4";
+      });
+      setTimeout(() => {
+        optionButtons.all.forEach((button) => {
+          button.disabled = false;
+          button.classList.add("button-hover-animation");
+          button.style.opacity = "1";
+        });
+      }, 3000);
+    },
+  };
+
+  if (playerWins < VICTORIES_NEEDED && computerWins < VICTORIES_NEEDED) {
     const computerSelection = getComputerChoice();
     console.log(computerSelection);
-    const playerSelection = prompt(
-      "Write down your choice; it can be rock, paper or scissors."
-    );
+    console.log(playerSelection);
 
     const roundMessage = playRound(computerSelection, playerSelection);
 
+    console.log(roundMessage);
+
     ROUND_WINNER[roundMessage]();
 
-    console.log(roundMessage);
+    return;
   }
 
-  console.log(playerWins, computerWins);
   console.log(gameWinner());
 }
 
-function onClickStartButton() {
-  game();
-}
+optionButtons.fire.addEventListener("click", () => game("fire"));
+optionButtons.freeze.addEventListener("click", () => game("freeze"));
+optionButtons.thunder.addEventListener("click", () => game("thunder"));
+optionButtons.flash.addEventListener("click", () => game("flash"));
+optionButtons.startoms.addEventListener("click", () => game("startoms"));
