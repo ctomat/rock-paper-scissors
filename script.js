@@ -19,9 +19,26 @@ const header = document.querySelector(".header-container");
 
 const textBox = document.querySelector(".text-box-content");
 
+const winLoseBox = document.querySelector(".win-lose-container");
+const winLoseMessage = document.querySelector(".win-lose-message");
+
 const starman = document.querySelector(".starman");
 const playerCounter = document.querySelector(".player-counter");
 const starmanCounter = document.querySelector(".starman-counter");
+const playbutton = document.querySelector(".play-button");
+const playAgain = document.querySelector(".play-again");
+const tutorial = document.querySelector(".modal-container");
+
+playbutton.addEventListener("click", () => {
+  tutorial.classList.remove("tutorial");
+  tutorial.classList.add("exit");
+});
+
+playAgain.addEventListener("click", () => {
+  winLoseBox.classList.add("hide");
+  textBox.innerText = "";
+  typeWriter(0, `•\u00a0Battle\u00a0Begins!`, ".text-box-content", 75);
+});
 
 function typeWriter(i, txt, className, speed) {
   if (i < txt.length) {
@@ -103,11 +120,32 @@ function playRound(computerSelection, playerSelection) {
 }
 
 function gameWinner() {
-  if (playerWins > computerWins) {
-    return "Player wins!";
-  }
+  if (playerWins === VICTORIES_NEEDED) {
+    const winMessage = document.createElement("h2");
+    winMessage.innerText = "You Win!";
 
-  return "Computer wins!";
+    playerWins = 0;
+    computerWins = 0;
+    playerCounter.innerText = 0;
+    starmanCounter.innerText = 0;
+
+    winLoseBox.insertBefore(winMessage, winLoseMessage);
+    winLoseBox.classList.remove("hide");
+
+    return;
+  }
+  const loseMessage = document.createElement("h2");
+  loseMessage.innerText = "You lose!";
+
+  playerWins = 0;
+  computerWins = 0;
+  playerCounter.innerText = 0;
+  starmanCounter.innerText = 0;
+
+  winLoseBox.insertBefore(loseMessage, winLoseMessage);
+  winLoseBox.classList.remove("hide");
+
+  return;
 }
 
 function game(playerSelection) {
@@ -187,19 +225,17 @@ function game(playerSelection) {
 
   if (playerWins < VICTORIES_NEEDED && computerWins < VICTORIES_NEEDED) {
     const computerSelection = getComputerChoice();
-    console.log(computerSelection);
-    console.log(playerSelection);
 
     const roundMessage = playRound(computerSelection, playerSelection);
 
-    console.log(roundMessage);
-
     ROUND_WINNER[roundMessage]();
-
-    return;
   }
 
-  console.log(gameWinner());
+  if (playerWins === VICTORIES_NEEDED || computerWins === VICTORIES_NEEDED) {
+    gameWinner();
+  }
+
+  return;
 }
 
 optionButtons.fire.addEventListener("click", () => game("fire"));

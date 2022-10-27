@@ -74,7 +74,9 @@ body {
 }
 
 .option-button,
-.points-counter {
+.points-counter,
+.modal-container,
+.win-lose-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,8 +87,11 @@ body {
     border-image: url('./bmtQZWx.png') 33 round;
     background-color: #000000;
     padding: 0;
-    cursor: pointer;
     transition: all 0.3s;
+}
+
+.option-button {
+    cursor: pointer;
 }
 
 .points-counter {
@@ -99,13 +104,109 @@ body {
     font-size: 1.6rem;
 }
 
+.modal-container {
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 999999;
+    width: 90vw;
+    height: 675px;
+    flex-direction: column;
+    justify-content: initial;
+    font-size: 1.5rem;
+    gap: 10px;
+    text-align: center;
+}
+
+.win-lose-container {
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 999999;
+    width: 30vw;
+    height: 200px;
+    flex-direction: column;
+    justify-content: initial;
+    font-size: 1.5rem;
+    gap: 10px;
+    text-align: center;
+}
+
+.hide {
+    visibility: hidden;
+    transform: translateY(-500px);
+}
+
+.modal-container .introduction {
+    width: 70%;
+}
+
+.modal-container figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal-container img {
+    width: 40px;
+    height: auto;
+
+}
+
+.pk-list {
+    margin-top: 20px;
+}
+
+.pk-list ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0;
+    text-align: center;
+    gap: 100px;
+}
+
+.info-to-play {
+    margin-top: 20px;
+}
+
+.info-to-play ul {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+}
+
+.info-to-play ul li {
+    padding: 0;
+}
+
+.play-button,
+.play-again {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
 .button-hover-animation:hover {
     width: 140px;
     height: 140px;
 }
 
 .button-container button img {
-    width: 70px;
+    width: 100px;
     height: auto;
 }
 
@@ -131,6 +232,15 @@ body {
     gap: 100px;
 }
 
+.tutorial {
+    animation: entrance .5s linear;
+}
+
+.exit {
+    animation: exit .5s linear;
+    top: -700px;
+}
+
 @keyframes blink {
     0% {
         opacity: 0;
@@ -154,6 +264,34 @@ body {
 
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes entrance {
+    0% {
+        top: -700px;
+    }
+
+    50% {
+        top: -300px;
+    }
+
+    100% {
+        top: 20px;
+    }
+}
+
+@keyframes exit {
+    0% {
+        top: 20px;
+    }
+
+    50% {
+        top: -300px;
+    }
+
+    100% {
+        top: -700;
     }
 }
 

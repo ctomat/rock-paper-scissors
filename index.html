@@ -14,6 +14,73 @@
     <video autoplay muted loop id="myVideo">
         <source src="./video/battle-background.mp4" type="video/mp4">
     </video>
+    <div class="win-lose-container hide">
+        <span class="win-lose-message"></span>
+        <p>Want to play again? <span class="play-again">Click here!</span></p>
+    </div>
+    <div class="modal-container tutorial">
+        <header>
+            <h1>WELCOME TO PK GAME!</h1>
+            <p>A rock-paper-scissors game with a few extra rules - <span class="play-button">Click here
+                    to play!</span></p>
+        </header>
+        <div class="introduction">
+            <div>
+                <p>
+                    In this game you will fight against a Starman, a very frequent enemy in Mother's games. To defeat
+                    him you will have to accumulate five points. Instead of thetypical rock paper scissors, you have
+                    five PKs (Psychic Powers) at your disposal. The PKs are:
+                </p>
+            </div>
+            <div class="pk-list">
+                <ul>
+                    <li>
+                        <figure>
+                            <img src="./images/fire.png" alt="">
+                            <figcaption>PK FIRE</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./images/freeze.png" alt="">
+                            <figcaption>PK FREEZE</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./images/thunder.png" alt="">
+                            <figcaption>PK THUNDER</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./images/light.png" alt="">
+                            <figcaption>PK FLASH</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./images/star.png" alt="">
+                            <figcaption>PK STARTOMS</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+            <div class="info-to-play">
+                <p>
+                    At the beginning of each round both you and the Starman will choose one of the PKs. Each PK defeats
+                    two others.
+                </p>
+                <ul>
+                    <li>PK FIRE defeats FREEZE and FLASH</li>
+                    <li>PK FREEZE defeats THUNDER AND STARTOMS</li>
+                    <li>PK THUNDER defeats FIRE AND FLASH</li>
+                    <li>PK FLASH defeats FREEZE AND STARTOMS</li>
+                    <li>PK STARTOMS defeat FIRE and THUNDER</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="content breadcrumb">
         <div class="header-container">
             <header>
