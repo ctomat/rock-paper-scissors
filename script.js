@@ -121,6 +121,9 @@ function playRound(computerSelection, playerSelection) {
 
 function gameWinner() {
   if (playerWins === VICTORIES_NEEDED) {
+    textBox.innerText = "";
+    typeWriter(0, ``, ".text-box-content", 75);
+
     const winMessage = document.createElement("h2");
     winMessage.innerText = "You Win!";
 
@@ -134,18 +137,22 @@ function gameWinner() {
 
     return;
   }
-  const loseMessage = document.createElement("h2");
-  loseMessage.innerText = "You lose!";
 
-  playerWins = 0;
-  computerWins = 0;
-  playerCounter.innerText = 0;
-  starmanCounter.innerText = 0;
+  if (computerWins === VICTORIES_NEEDED) {
+    typeWriter(0, ``, ".text-box-content", 75);
+    const loseMessage = document.createElement("h2");
+    loseMessage.innerText = "You lose!";
 
-  winLoseBox.insertBefore(loseMessage, winLoseMessage);
-  winLoseBox.classList.remove("hide");
+    playerWins = 0;
+    computerWins = 0;
+    playerCounter.innerText = 0;
+    starmanCounter.innerText = 0;
 
-  return;
+    winLoseBox.insertBefore(loseMessage, winLoseMessage);
+    winLoseBox.classList.remove("hide");
+
+    return;
+  }
 }
 
 function game(playerSelection) {
